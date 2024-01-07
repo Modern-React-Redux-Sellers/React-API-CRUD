@@ -13,14 +13,20 @@ const App = () => {
     }
 
     const editBook = () => {}
-    const deleteBook = () => {}
+    //Loops through books, returns only books with different ID than one wanted to delete
+    const deleteBookById = (id) => {
+        const updatedBooks = books.filter((book) => {
+            return book.id !== id;
+        })
+        setBooks(updatedBooks);
+    }
 
 
     return (
         <div>
             {books.length}
             <BookCreate onCreate={createBook}/>
-            <BookList books={books} />
+            <BookList books={books} onDelete={deleteBookById}/>
         </div>
     )
 }
