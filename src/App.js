@@ -12,7 +12,15 @@ const App = () => {
         console.log('Adding book with title',title);
     }
 
-    const editBook = () => {}
+    const editBookById = (id, newTitle) => {
+        const updatedBooks = books.map((book) => {
+            if (book.id === id){
+                return {...book, title:newTitle}
+            }
+            return book;
+        })
+        setBooks(updatedBooks);
+    }
     //Loops through books, returns only books with different ID than one wanted to delete
     const deleteBookById = (id) => {
         const updatedBooks = books.filter((book) => {
@@ -26,7 +34,7 @@ const App = () => {
         <div>
             {books.length}
             <BookCreate onCreate={createBook}/>
-            <BookList books={books} onDelete={deleteBookById}/>
+            <BookList books={books} onDelete={deleteBookById} onEdit={editBookById}/>
         </div>
     )
 }
