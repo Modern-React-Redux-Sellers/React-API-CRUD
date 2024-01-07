@@ -12,10 +12,15 @@ const BookShow = ({book, onDelete, onEdit}) => {
         onDelete(book.id)
     }
 
+    const handleSubmit = (id, newTitle) => {
+        setShowEdit(false)
+        onEdit(id, newTitle);
+    }
+
     //Allows easy access to change displayed element dependant on if edit button is clicked
     let content = <h3>{book.title}</h3>
     if (showEdit){
-        content = <BookEdit book={book} onEdit={onEdit}/>
+        content = <BookEdit book={book} onSubmit={handleSubmit}/>
     }
 
     return (
